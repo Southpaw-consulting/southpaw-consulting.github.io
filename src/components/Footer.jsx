@@ -56,14 +56,14 @@ export default function Footer() {
 
           <div className="footer__col">
             <h4>Offices</h4>
-            <p className="muted">200 Meridian Tower<br />New York, NY 10018</p>
+            <p className="muted">200 Southpaw Tower<br />New York, NY 10018</p>
             <p className="muted">One Canary Wharf<br />London, E14 5AB</p>
           </div>
         </div>
 
         <div className="hairline" />
         <div className="footer__bottom">
-          <p>© {new Date().getFullYear()} Meridian Advisory Group. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Southpaw Financial Services. All rights reserved.</p>
           <div className="footer__legal">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>

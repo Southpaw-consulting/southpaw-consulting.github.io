@@ -58,7 +58,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25 }}
           >
-            Meridian Advisory Group unites audit, tax, and management consulting under one roof —
+            Southpaw Financial Services unites audit, tax, and management consulting under one roof —
             helping ambitious enterprises measure precisely, decide boldly, and compound value
             for the long term.
           </motion.p>
@@ -135,10 +135,10 @@ export default function Home() {
         <div className="glow glow-blue" style={{ width: 400, height: 400, top: '20%', right: -160 }} />
         <div className="container feature__inner">
           <Reveal className="feature__text">
-            <p className="eyebrow">Why Meridian</p>
+            <p className="eyebrow">Why Southpaw</p>
             <h2>Senior partners in the room. <span className="gold-text">Every engagement.</span></h2>
             <p className="muted">
-              You don't hire a logo — you hire the people who show up. At Meridian, the partner who
+              You don't hire a logo — you hire the people who show up. At Southpaw, the partner who
               wins your trust is the partner who does the work. No hand-offs to junior teams, no
               diluted attention.
             </p>
@@ -210,7 +210,7 @@ export default function Home() {
           <Reveal className="quote card">
             <p className="quote__mark gold-text">“</p>
             <blockquote>
-              Meridian didn't just audit our books — they reframed how we think about capital.
+              Southpaw didn't just audit our books — they reframed how we think about capital.
               Within two quarters we had a clearer balance sheet, a sharper strategy, and a board
               that finally spoke one language.
             </blockquote>

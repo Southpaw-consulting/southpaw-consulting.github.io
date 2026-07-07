@@ -42,7 +42,7 @@ const solutions = [
   {
     icon: <HiOutlineCpuChip />,
     title: 'Data & Analytics',
-    text: 'Our Meridian Lens platform turns your financial data into forward-looking, decision-ready intelligence.',
+    text: 'Our Southpaw Lens platform turns your financial data into forward-looking, decision-ready intelligence.',
     points: ['Financial dashboards & KPIs', 'Scenario & sensitivity modeling', 'Predictive forecasting'],
   },
 ]
@@ -55,7 +55,7 @@ export default function Solutions() {
       <PageHero
         eyebrow="Our solutions"
         title="Advisory that spans the <span class='serif-italic gold-text'>whole</span> financial picture."
-        subtitle="Six integrated practices, one coordinated team. Whatever the challenge — assurance, tax, strategy, or a transaction — Meridian brings a single, connected point of view."
+        subtitle="Six integrated practices, one coordinated team. Whatever the challenge — assurance, tax, strategy, or a transaction — Southpaw brings a single, connected point of view."
       />
 
       {/* SOLUTIONS GRID */}
@@ -84,10 +84,10 @@ export default function Solutions() {
         <div className="container">
           <Reveal className="card sol__banner">
             <div>
-              <p className="eyebrow">Meridian Lens</p>
+              <p className="eyebrow">Southpaw Lens</p>
               <h2>Your numbers, <span className="gold-text">alive.</span></h2>
               <p className="muted">
-                Every engagement plugs into Meridian Lens — our proprietary analytics platform that
+                Every engagement plugs into Southpaw Lens — our proprietary analytics platform that
                 consolidates your financials into a single, always-current view. Model scenarios,
                 track KPIs, and see the impact of every decision before you make it.
               </p>

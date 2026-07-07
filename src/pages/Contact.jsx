@@ -30,7 +30,7 @@ export default function Contact() {
       <PageHero
         eyebrow="Contact us"
         title="Let's talk about <span class='serif-italic gold-text'>your</span> next move."
-        subtitle="Whether you're preparing for an audit, planning a transaction, or rethinking strategy — a Meridian partner is ready to listen. Reach out and we'll respond within one business day."
+        subtitle="Whether you're preparing for an audit, planning a transaction, or rethinking strategy — a Southpaw partner is ready to listen. Reach out and we'll respond within one business day."
       />
 
       <section className="section">
@@ -47,7 +47,7 @@ export default function Contact() {
             <div className="contact__cards">
               <div className="contact__item">
                 <span className="contact__ic"><HiOutlineEnvelope /></span>
-                <div><strong>Email</strong><p className="muted">partners@meridianadvisory.com</p></div>
+                <div><strong>Email</strong><p className="muted">partners@southpawfinancial.com</p></div>
               </div>
               <div className="contact__item">
                 <span className="contact__ic"><HiOutlinePhone /></span>
@@ -55,7 +55,7 @@ export default function Contact() {
               </div>
               <div className="contact__item">
                 <span className="contact__ic"><HiOutlineMapPin /></span>
-                <div><strong>New York HQ</strong><p className="muted">200 Meridian Tower, New York, NY 10018</p></div>
+                <div><strong>New York HQ</strong><p className="muted">200 Southpaw Tower, New York, NY 10018</p></div>
               </div>
               <div className="contact__item">
                 <span className="contact__ic"><HiOutlineClock /></span>
@@ -123,7 +123,7 @@ export default function Contact() {
           </Reveal>
           <div className="contact__offices">
             {[
-              { city: 'New York', addr: '200 Meridian Tower, NY 10018', tz: 'Headquarters' },
+              { city: 'New York', addr: '200 Southpaw Tower, NY 10018', tz: 'Headquarters' },
               { city: 'London', addr: 'One Canary Wharf, E14 5AB', tz: 'EMEA Hub' },
               { city: 'Singapore', addr: '9 Marina Boulevard, 018989', tz: 'APAC Hub' },
               { city: 'Dubai', addr: 'DIFC Gate District, PO 507101', tz: 'Middle East' },

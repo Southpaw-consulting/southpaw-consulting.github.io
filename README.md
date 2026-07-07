@@ -1,4 +1,4 @@
-# Meridian Advisory Group
+# Southpaw Financial Services
 
 A premium React frontend for a modern management consulting & accounting firm.
 Built with **Vite + React**, **React Router**, and **Framer Motion**.

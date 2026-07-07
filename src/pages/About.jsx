@@ -15,7 +15,7 @@ const milestones = [
   { year: '2008', text: 'Founded in New York by three partners from global assurance and strategy backgrounds.' },
   { year: '2013', text: 'Opened London office; launched dedicated management consulting practice.' },
   { year: '2018', text: 'Surpassed 500 enterprise clients and $10B in assets under advisory.' },
-  { year: '2022', text: 'Built proprietary financial analytics platform, Meridian Lens.' },
+  { year: '2022', text: 'Built proprietary financial analytics platform, Southpaw Lens.' },
   { year: '2026', text: 'Operating across 34 countries with a 98% client retention rate.' },
 ]
 
@@ -32,7 +32,7 @@ export default function About() {
       <PageHero
         eyebrow="About the firm"
         title="We are the partner behind the <span class='serif-italic gold-text'>numbers</span>."
-        subtitle="Meridian Advisory Group was built on a simple conviction: enterprises deserve advisors who combine the rigor of audit, the foresight of strategy, and the discretion of a trusted confidant."
+        subtitle="Southpaw Financial Services was built on a simple conviction: enterprises deserve advisors who combine the rigor of audit, the foresight of strategy, and the discretion of a trusted confidant."
       />
 
       {/* STORY */}
@@ -44,7 +44,7 @@ export default function About() {
           </Reveal>
           <Reveal delay={0.1} className="about__story-body muted">
             <p>
-              We started Meridian because the traditional advisory model was broken. Clients were
+              We started Southpaw because the traditional advisory model was broken. Clients were
               sold by senior partners and served by rotating juniors. Audit, tax, and strategy sat
               in silos that rarely spoke. And reports told you what happened — never what to do next.
             </p>
@@ -84,7 +84,7 @@ export default function About() {
         <div className="container">
           <Reveal className="section-head">
             <p className="eyebrow">The journey</p>
-            <h2>Milestones that shaped Meridian.</h2>
+            <h2>Milestones that shaped Southpaw.</h2>
           </Reveal>
           <div className="timeline">
             {milestones.map((m, i) => (
