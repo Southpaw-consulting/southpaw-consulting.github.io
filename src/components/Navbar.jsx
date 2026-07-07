@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { HiOutlineMenuAlt4, HiX } from 'react-icons/hi'
-import Logo from './Logo.jsx'
 import './Navbar.css'
 
 const links = [
@@ -29,10 +28,7 @@ export default function Navbar() {
     <header className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
       <div className="container nav__inner">
         <Link to="/" className="nav__brand" onClick={() => setOpen(false)}>
-          <Logo />
-          <span className="nav__brand-text">
-            Southpaw<span className="nav__brand-sub">Financial Services</span>
-          </span>
+          <img src="/logo-wordmark.png" alt="Southpaw Financial Services" className="nav__brand-logo" />
         </Link>
 
         <nav className="nav__links">
