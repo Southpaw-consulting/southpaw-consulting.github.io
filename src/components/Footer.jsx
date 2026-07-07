@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'
 import { HiArrowUpRight } from 'react-icons/hi2'
 import './Footer.css'
 
@@ -28,10 +27,6 @@ export default function Footer() {
               A modern advisory firm uniting audit, tax, and management consulting to help
               enterprises measure clearly, decide boldly, and grow with confidence.
             </p>
-            <div className="footer__social">
-              <a href="#" aria-label="LinkedIn"><FaLinkedinIn /></a>
-              <a href="#" aria-label="X"><FaXTwitter /></a>
-            </div>
           </div>
 
           <div className="footer__col">
@@ -60,11 +55,6 @@ export default function Footer() {
         <div className="hairline" />
         <div className="footer__bottom">
           <p>© {new Date().getFullYear()} Southpaw Financial Services. All rights reserved.</p>
-          <div className="footer__legal">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Regulatory Disclosures</a>
-          </div>
         </div>
       </div>
     </footer>

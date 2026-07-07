@@ -68,21 +68,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Link to="/contact" className="btn btn-gold">Book a Consultation <HiArrowUpRight /></Link>
+            <Link to="/contact" className="btn btn-gold">Get in Touch <HiArrowUpRight /></Link>
             <Link to="/solutions" className="btn btn-ghost">Explore Our Solutions</Link>
-          </motion.div>
-
-          <motion.div
-            className="hero__trust"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.7 }}
-          >
-            <span>Trusted by finance leaders at</span>
-            <div className="hero__logos">
-              {['NORTHWIND', 'AXIOM', 'VERTEX', 'HELIOS', 'CALDERA'].map((n) => (
-                <span key={n} className="hero__logo">{n}</span>
-              ))}
-            </div>
           </motion.div>
         </div>
       </section>

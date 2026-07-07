@@ -45,8 +45,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Link to="/contact" className="btn btn-gold nav__cta">Book a Consultation</Link>
-
         <button className="nav__burger" onClick={() => setOpen((o) => !o)} aria-label="Menu">
           {open ? <HiX /> : <HiOutlineMenuAlt4 />}
         </button>
@@ -65,9 +63,6 @@ export default function Navbar() {
             {l.label}
           </NavLink>
         ))}
-        <Link to="/contact" className="btn btn-gold" onClick={() => setOpen(false)}>
-          Book a Consultation
-        </Link>
       </div>
     </>
   )
