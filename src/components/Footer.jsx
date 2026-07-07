@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'
 import { HiArrowUpRight } from 'react-icons/hi2'
+import SouthpawLogo from './SouthpawLogo.jsx'
 import './Footer.css'
 
 export default function Footer() {
@@ -22,7 +23,7 @@ export default function Footer() {
         <div className="footer__grid">
           <div className="footer__brand">
             <Link to="/" className="nav__brand">
-              <img src="/logo-wordmark.png" alt="Southpaw Financial Services" className="footer__brand-logo" />
+              <SouthpawLogo className="footer__brand-logo" />
             </Link>
             <p className="muted footer__blurb">
               A modern advisory firm uniting audit, tax, and management consulting to help
