@@ -25,6 +25,7 @@ export default function Navbar() {
   }, [open])
 
   return (
+    <>
     <header className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
       <div className="container nav__inner">
         <Link to="/" className="nav__brand" onClick={() => setOpen(false)}>
@@ -50,6 +51,7 @@ export default function Navbar() {
           {open ? <HiX /> : <HiOutlineMenuAlt4 />}
         </button>
       </div>
+    </header>
 
       <div className={`nav__mobile ${open ? 'is-open' : ''}`}>
         {links.map((l) => (
@@ -67,6 +69,6 @@ export default function Navbar() {
           Book a Consultation
         </Link>
       </div>
-    </header>
+    </>
   )
 }
