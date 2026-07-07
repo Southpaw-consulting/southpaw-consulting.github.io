@@ -25,7 +25,7 @@ export default function Footer() {
             <Link to="/" className="nav__brand">
               <Logo size={44} />
               <span className="nav__brand-text">
-                Meridian<span className="nav__brand-sub">Advisory Group</span>
+                Southpaw<span className="nav__brand-sub">Financial Services</span>
               </span>
             </Link>
             <p className="muted footer__blurb">

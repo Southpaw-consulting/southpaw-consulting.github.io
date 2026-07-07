@@ -31,7 +31,7 @@ export default function Navbar() {
         <Link to="/" className="nav__brand" onClick={() => setOpen(false)}>
           <Logo />
           <span className="nav__brand-text">
-            Meridian<span className="nav__brand-sub">Advisory Group</span>
+            Southpaw<span className="nav__brand-sub">Financial Services</span>
           </span>
         </Link>
 
