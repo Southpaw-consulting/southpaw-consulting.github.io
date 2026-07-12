@@ -10,12 +10,28 @@ import About from './pages/About.jsx'
 import Solutions from './pages/Solutions.jsx'
 import Contact from './pages/Contact.jsx'
 
-function ScrollToTop() {
-  const { pathname } = useLocation()
+function ScrollManager() {
+  const { pathname, hash } = useLocation()
   useEffect(() => {
+    // If there's a hash (e.g. /contact#enquiry), scroll to that section once it mounts.
+    if (hash) {
+      let tries = 0
+      const id = setInterval(() => {
+        const el = document.querySelector(hash)
+        if (el) {
+          if (window.__lenis) window.__lenis.scrollTo(el, { offset: -90 })
+          else el.scrollIntoView({ behavior: 'smooth' })
+          clearInterval(id)
+        } else if (tries++ > 25) {
+          clearInterval(id)
+        }
+      }, 40)
+      return () => clearInterval(id)
+    }
+    // Otherwise jump to top on route change.
     if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true })
     else window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [pathname])
+  }, [pathname, hash])
   return null
 }
 
@@ -83,7 +99,7 @@ export default function App() {
   return (
     <>
       <ScrollProgress />
-      <ScrollToTop />
+      <ScrollManager />
       <Navbar />
       <main>
         <AnimatePresence mode="wait">

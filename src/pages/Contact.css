@@ -54,6 +54,8 @@
   font-size: 0.9rem;
 }
 .contact__error svg { font-size: 1.3rem; flex-shrink: 0; }
+.contact__error-link { color: #f5c4c4; text-decoration: underline; }
+.contact__error-link:hover { color: #fff; }
 .contact__submit:disabled { opacity: 0.65; cursor: default; transform: none; }
 
 /* Offices */

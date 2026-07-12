@@ -15,7 +15,7 @@ export default function Footer() {
             <p className="muted">Partner with advisors who treat your ambition as their mandate.</p>
           </div>
           <Magnetic>
-            <Link to="/contact" className="btn btn-gold">
+            <Link to="/contact#enquiry" className="btn btn-gold">
               Start the conversation <HiArrowUpRight />
             </Link>
           </Magnetic>

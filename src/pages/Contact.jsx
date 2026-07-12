@@ -19,12 +19,14 @@ const EMPTY = { name: '', email: '', company: '', service: services[0], message:
 export default function Contact() {
   const [form, setForm] = useState(EMPTY)
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [errMsg, setErrMsg] = useState('')
 
   const update = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
   const submit = async (e) => {
     e.preventDefault()
     setStatus('sending')
+    setErrMsg('')
     try {
       // FormData avoids a CORS preflight (more reliable than JSON with FormSubmit)
       const fd = new FormData()
@@ -43,16 +45,20 @@ export default function Contact() {
         body: fd,
       })
 
-      // Any successful HTTP response means FormSubmit received it
-      // (the first one also triggers the one-time activation email).
-      if (res.ok) {
+      let data = {}
+      try { data = await res.json() } catch { /* non-JSON response */ }
+      const ok = res.ok && data.success !== false && data.success !== 'false'
+
+      if (ok) {
         setStatus('sent')
         setForm(EMPTY)
         setTimeout(() => setStatus('idle'), 6000)
       } else {
+        setErrMsg(data.message || `Request failed (HTTP ${res.status})`)
         setStatus('error')
       }
     } catch (err) {
+      setErrMsg(err.message || 'Network error')
       setStatus('error')
     }
   }
@@ -65,7 +71,7 @@ export default function Contact() {
         subtitle="Whether you're preparing for an audit, planning a transaction, or rethinking strategy — a Southpaw partner is ready to listen. Reach out and we'll respond within one business day."
       />
 
-      <section className="section">
+      <section className="section" id="enquiry">
         <div className="container contact__layout">
           {/* INFO */}
           <Reveal className="contact__info">
@@ -79,7 +85,7 @@ export default function Contact() {
             <div className="contact__cards">
               <div className="contact__item">
                 <span className="contact__ic"><HiOutlineEnvelope /></span>
-                <div><strong>Email</strong><p className="muted">partners@southpawfinancial.com</p></div>
+                <div><strong>Email</strong><p className="muted">southpawfinancials@gmail.com</p></div>
               </div>
               <div className="contact__item">
                 <span className="contact__ic"><HiOutlinePhone /></span>
@@ -87,7 +93,7 @@ export default function Contact() {
               </div>
               <div className="contact__item">
                 <span className="contact__ic"><HiOutlineMapPin /></span>
-                <div><strong>Bengaluru Office</strong><p className="muted">-</p></div>
+                <div><strong>Bengaluru Office</strong><p className="muted"></p></div>
               </div>
               <div className="contact__item">
                 <span className="contact__ic"><HiOutlineClock /></span>
@@ -145,7 +151,7 @@ export default function Contact() {
                     className="contact__error"
                     initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
                   >
-                    <HiOutlineExclamationTriangle /> Something went wrong. Please try again, or email us directly.
+                    <HiOutlineExclamationTriangle /> {errMsg || 'Something went wrong. Please try again in a moment.'}
                   </motion.div>
                 )}
               </AnimatePresence>
