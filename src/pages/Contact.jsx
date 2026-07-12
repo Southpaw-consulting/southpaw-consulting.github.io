@@ -26,21 +26,26 @@ export default function Contact() {
     e.preventDefault()
     setStatus('sending')
     try {
+      // FormData avoids a CORS preflight (more reliable than JSON with FormSubmit)
+      const fd = new FormData()
+      fd.append('name', form.name)
+      fd.append('email', form.email)
+      fd.append('company', form.company)
+      fd.append('service', form.service)
+      fd.append('message', form.message)
+      fd.append('_subject', `New enquiry from ${form.name || 'website'} — Southpaw`)
+      fd.append('_template', 'table')
+      fd.append('_captcha', 'false')
+
       const res = await fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          company: form.company,
-          service: form.service,
-          message: form.message,
-          _subject: `New enquiry from ${form.name || 'website'} — Southpaw`,
-          _template: 'table',
-        }),
+        headers: { Accept: 'application/json' },
+        body: fd,
       })
-      const data = await res.json().catch(() => ({}))
-      if (res.ok && (data.success === true || data.success === 'true')) {
+
+      // Any successful HTTP response means FormSubmit received it
+      // (the first one also triggers the one-time activation email).
+      if (res.ok) {
         setStatus('sent')
         setForm(EMPTY)
         setTimeout(() => setStatus('idle'), 6000)
