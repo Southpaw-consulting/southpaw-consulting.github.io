@@ -2,18 +2,12 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   HiArrowUpRight, HiOutlineChartBar, HiOutlineScale,
-  HiOutlineBriefcase, HiOutlineShieldCheck, HiOutlineGlobeAlt, HiOutlineLightBulb,
+  HiOutlineBriefcase, HiOutlineShieldCheck,
 } from 'react-icons/hi2'
 import Page from '../components/Page.jsx'
 import Reveal from '../components/Reveal.jsx'
+import Magnetic from '../components/Magnetic.jsx'
 import './Home.css'
-
-const stats = [
-  { value: '$42B+', label: 'Assets under advisory' },
-  { value: '1,200+', label: 'Enterprises served' },
-  { value: '34', label: 'Countries of operation' },
-  { value: '98%', label: 'Client retention' },
-]
 
 const pillars = [
   { icon: <HiOutlineShieldCheck />, title: 'Assurance & Audit', text: 'Rigorous, independent assurance that turns your numbers into a source of trust for boards, lenders, and regulators.' },
@@ -68,23 +62,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Link to="/contact" className="btn btn-gold">Get in Touch <HiArrowUpRight /></Link>
-            <Link to="/solutions" className="btn btn-ghost">Explore Our Solutions</Link>
+            <Magnetic><Link to="/contact" className="btn btn-gold">Get in Touch <HiArrowUpRight /></Link></Magnetic>
+            <Magnetic><Link to="/solutions" className="btn btn-ghost">Explore Our Solutions</Link></Magnetic>
           </motion.div>
-        </div>
-      </section>
-
-      {/* ---------------- STATS ---------------- */}
-      <section className="section stats-section">
-        <div className="container">
-          <div className="stats">
-            {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.08} className="stat">
-                <span className="stat__value gold-text">{s.value}</span>
-                <span className="stat__label muted">{s.label}</span>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -117,61 +97,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- FEATURE / VALUE ---------------- */}
-      <section className="section feature bg-grain">
-        <div className="glow glow-blue" style={{ width: 400, height: 400, top: '20%', right: -160 }} />
-        <div className="container feature__inner">
-          <Reveal className="feature__text">
-            <p className="eyebrow">Why Southpaw</p>
-            <h2>Senior partners in the room. <span className="gold-text">Every engagement.</span></h2>
-            <p className="muted">
-              You don't hire a logo — you hire the people who show up. At Southpaw, the partner who
-              wins your trust is the partner who does the work. No hand-offs to junior teams, no
-              diluted attention.
-            </p>
-            <ul className="feature__list">
-              {[
-                'Partner-led teams from diagnosis to delivery',
-                'Board-ready reporting and financial modeling',
-                'Sector depth across finance, tech, energy & industrials',
-                'Global reach with local regulatory fluency',
-              ].map((f) => (
-                <li key={f}><span className="check"><HiOutlineShieldCheck /></span>{f}</li>
-              ))}
-            </ul>
-            <Link to="/about" className="btn btn-ghost">More about the firm <HiArrowUpRight /></Link>
-          </Reveal>
-
-          <Reveal delay={0.15} className="feature__panel">
-            <div className="card feature__card">
-              <div className="feature__card-row">
-                <HiOutlineGlobeAlt />
-                <div>
-                  <strong>Global advisory desk</strong>
-                  <p className="muted">Coordinated support across 34 countries and every major reporting standard.</p>
-                </div>
-              </div>
-              <div className="hairline" />
-              <div className="feature__card-row">
-                <HiOutlineLightBulb />
-                <div>
-                  <strong>Insight, not just reporting</strong>
-                  <p className="muted">Data-driven analysis that tells you what to do next — not only what happened.</p>
-                </div>
-              </div>
-              <div className="hairline" />
-              <div className="feature__card-row">
-                <HiOutlineScale />
-                <div>
-                  <strong>Independence you can bank on</strong>
-                  <p className="muted">Objective, conflict-free counsel that holds up under any scrutiny.</p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ---------------- PROCESS ---------------- */}
       <section className="section">
         <div className="container">
@@ -188,27 +113,6 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ---------------- QUOTE ---------------- */}
-      <section className="section quote-section">
-        <div className="container">
-          <Reveal className="quote card">
-            <p className="quote__mark gold-text">“</p>
-            <blockquote>
-              Southpaw didn't just audit our books — they reframed how we think about capital.
-              Within two quarters we had a clearer balance sheet, a sharper strategy, and a board
-              that finally spoke one language.
-            </blockquote>
-            <div className="quote__author">
-              <div className="quote__avatar">EM</div>
-              <div>
-                <strong>Elena Marchetti</strong>
-                <span className="muted">CFO, Northwind Industries</span>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
     </Page>

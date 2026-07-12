@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { HiArrowUpRight } from 'react-icons/hi2'
+import Magnetic from './Magnetic.jsx'
 import './Footer.css'
 
 export default function Footer() {
@@ -13,9 +14,11 @@ export default function Footer() {
             <h2>Ready to sharpen your financial edge?</h2>
             <p className="muted">Partner with advisors who treat your ambition as their mandate.</p>
           </div>
-          <Link to="/contact" className="btn btn-gold">
-            Start the conversation <HiArrowUpRight />
-          </Link>
+          <Magnetic>
+            <Link to="/contact" className="btn btn-gold">
+              Start the conversation <HiArrowUpRight />
+            </Link>
+          </Magnetic>
         </div>
 
         <div className="footer__grid">
@@ -34,7 +37,6 @@ export default function Footer() {
             <Link to="/about">About Us</Link>
             <Link to="/solutions">Our Solutions</Link>
             <Link to="/contact">Contact</Link>
-            <a href="#">Careers</a>
           </div>
 
           <div className="footer__col">
@@ -47,8 +49,8 @@ export default function Footer() {
 
           <div className="footer__col">
             <h4>Offices</h4>
-            <p className="muted">200 Southpaw Tower<br />New York, NY 10018</p>
-            <p className="muted">One Canary Wharf<br />London, E14 5AB</p>
+            <p className="muted">Bengaluru</p>
+            <p className="muted">Chennai</p>
           </div>
         </div>
 

@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom'
-import { HiArrowUpRight, HiOutlineSparkles, HiOutlineHandRaised, HiOutlineEye } from 'react-icons/hi2'
+import {
+  HiOutlineSparkles, HiOutlineHandRaised, HiOutlineEye,
+  HiOutlinePuzzlePiece, HiOutlineUserGroup, HiOutlineCube,
+} from 'react-icons/hi2'
 import Page from '../components/Page.jsx'
 import PageHero from '../components/PageHero.jsx'
 import Reveal from '../components/Reveal.jsx'
@@ -11,19 +13,22 @@ const values = [
   { icon: <HiOutlineSparkles />, title: 'Craft', text: 'We treat every model, memo, and audit as a piece of craftsmanship — precise, rigorous, and quietly elegant.' },
 ]
 
-const milestones = [
-  { year: '2008', text: 'Founded in New York by three partners from global assurance and strategy backgrounds.' },
-  { year: '2013', text: 'Opened London office; launched dedicated management consulting practice.' },
-  { year: '2018', text: 'Surpassed 500 enterprise clients and $10B in assets under advisory.' },
-  { year: '2022', text: 'Built proprietary financial analytics platform, Southpaw Lens.' },
-  { year: '2026', text: 'Operating across 34 countries with a 98% client retention rate.' },
-]
-
-const leaders = [
-  { name: 'Jonathan Reyes', role: 'Founding Partner & CEO', initials: 'JR' },
-  { name: 'Priya Nair', role: 'Head of Assurance', initials: 'PN' },
-  { name: 'Marcus Brandt', role: 'Head of Consulting', initials: 'MB' },
-  { name: 'Sofia Alvarez', role: 'Head of Tax Advisory', initials: 'SA' },
+const propositions = [
+  {
+    icon: <HiOutlinePuzzlePiece />,
+    title: 'Comprehensive Problem-Solving',
+    text: 'A 360° approach that unites audit, tax, and financial advisory — strengthening internal controls, sharpening financial reporting, and protecting value across your balance sheet.',
+  },
+  {
+    icon: <HiOutlineUserGroup />,
+    title: 'Collaborative Synergy',
+    text: 'Our blend of audit, tax, consulting, and finance expertise delivers tailored solutions that align statutory compliance with the strategic financial outcomes your business needs.',
+  },
+  {
+    icon: <HiOutlineCube />,
+    title: 'Source-Centric Solutions',
+    text: 'We trace every issue to its financial root — reinforcing the accuracy and integrity of your numbers so risks are caught and corrected before they reach your statements.',
+  },
 ]
 
 export default function About() {
@@ -44,15 +49,22 @@ export default function About() {
           </Reveal>
           <Reveal delay={0.1} className="about__story-body muted">
             <p>
-              We started Southpaw because the traditional advisory model was broken. Clients were
-              sold by senior partners and served by rotating juniors. Audit, tax, and strategy sat
-              in silos that rarely spoke. And reports told you what happened — never what to do next.
+              In an increasingly competitive and fast-changing business environment, organizations
+              must stay agile, make informed decisions, and continuously sharpen their operations to
+              achieve sustainable growth. From entering new markets and improving operational
+              efficiency to embracing digital transformation and strengthening financial performance,
+              businesses need strategic guidance to stay ahead.
             </p>
             <p>
-              So we built something different: a firm where senior practitioners stay in the room,
-              where every discipline shares one view of your financial reality, and where insight is
-              the deliverable — not just documentation. Today, that philosophy guides more than 1,200
-              enterprises across the world.
+              At Southpaw, we help organizations meet these challenges with practical, result-oriented
+              advisory solutions. We work closely with our clients to improve business performance,
+              optimize financial and operational processes, manage risk effectively, and drive
+              strategic growth initiatives.
+            </p>
+            <p>
+              With expertise spanning finance, operations, technology, governance, and business
+              strategy, we deliver tailored solutions that help organizations improve efficiency,
+              enhance profitability, and create lasting long-term value.
             </p>
           </Reveal>
         </div>
@@ -79,46 +91,27 @@ export default function About() {
         </div>
       </section>
 
-      {/* TIMELINE */}
+      {/* VALUE PROPOSITIONS */}
       <section className="section">
         <div className="container">
-          <Reveal className="section-head">
-            <p className="eyebrow">The journey</p>
-            <h2>Milestones that shaped Southpaw.</h2>
-          </Reveal>
-          <div className="timeline">
-            {milestones.map((m, i) => (
-              <Reveal key={m.year} delay={i * 0.06} className="timeline__item">
-                <div className="timeline__dot" />
-                <span className="timeline__year gold-text">{m.year}</span>
-                <p className="muted">{m.text}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* LEADERSHIP */}
-      <section className="section about__team-sec bg-grain">
-        <div className="container">
           <Reveal className="section-head center">
-            <p className="eyebrow">Leadership</p>
-            <h2>The partners you'll actually work with.</h2>
+            <p className="eyebrow">Why clients choose us</p>
+            <h2>Key value we bring to every engagement.</h2>
+            <p className="muted">
+              Three principles that shape how we partner with clients and deliver results that last.
+            </p>
           </Reveal>
-          <div className="about__team">
-            {leaders.map((l, i) => (
-              <Reveal key={l.name} delay={i * 0.08}>
-                <article className="card about__member">
-                  <div className="about__avatar">{l.initials}</div>
-                  <h3>{l.name}</h3>
-                  <p className="muted">{l.role}</p>
+          <div className="about__values">
+            {propositions.map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.1}>
+                <article className="card about__value">
+                  <div className="about__value-icon">{p.icon}</div>
+                  <h3>{p.title}</h3>
+                  <p className="muted">{p.text}</p>
                 </article>
               </Reveal>
             ))}
           </div>
-          <Reveal delay={0.2} className="about__cta">
-            <Link to="/contact" className="btn btn-gold">Work with our team <HiArrowUpRight /></Link>
-          </Reveal>
         </div>
       </section>
     </Page>

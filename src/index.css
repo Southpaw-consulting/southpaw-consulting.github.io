@@ -43,6 +43,12 @@
 
 html { scroll-behavior: smooth; }
 
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
 body {
   font-family: var(--font-body);
   background: var(--navy-900);
@@ -88,9 +94,11 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.
   -webkit-text-fill-color: transparent;
   /* padding + inline-block stop italic swashes from being clipped by the text box */
   display: inline-block;
-  padding: 0.06em 0.08em;
-  margin: -0.06em -0.08em;
+  padding: 0.08em 0.14em;
+  margin: -0.08em -0.14em;
 }
+/* italic serif glyphs overflow more — give them extra breathing room */
+.serif-italic.gold-text { padding-right: 0.2em; margin-right: -0.2em; }
 .serif-italic { font-style: italic; font-family: var(--font-display); }
 
 /* ---------- Layout ---------- */
@@ -126,6 +134,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.
 
 /* ---------- Glass card ---------- */
 .card {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.015));
   border: 1px solid var(--glass-border);
   border-radius: var(--radius);
@@ -136,6 +146,28 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.
   transform: translateY(-8px);
   border-color: rgba(201,162,39,.45);
   box-shadow: var(--shadow-soft);
+}
+/* cursor-follow spotlight glow */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(201,162,39,.34), rgba(201,162,39,.06) 40%, transparent 66%);
+  opacity: 0;
+  transition: opacity .4s ease;
+  z-index: 0;
+}
+.card:hover::after { opacity: 1; }
+/* keep card content above the glow */
+.card > * { position: relative; z-index: 1; }
+
+/* interactive tilt cards — snappier transform response */
+.pillar, .sol__card, .about__value, .contact__office {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform .2s ease, border-color .5s, box-shadow .5s;
 }
 
 /* ---------- Background helpers ---------- */
@@ -162,7 +194,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.
 
 /* ---------- Utility ---------- */
 .center { text-align: center; }
-.center .section-head { margin-left: auto; margin-right: auto; }
+.center .section-head,
+.section-head.center { margin-left: auto; margin-right: auto; }
 .center .eyebrow::after { content:''; width:32px; height:1px; background:var(--gold-400); display:inline-block; }
 
 ::selection { background: var(--gold-400); color: var(--navy-900); }

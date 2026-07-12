@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
 import {
-  HiArrowUpRight, HiOutlineShieldCheck, HiOutlineScale, HiOutlineChartBar,
+  HiOutlineShieldCheck, HiOutlineScale, HiOutlineChartBar,
   HiOutlineBriefcase, HiOutlineCpuChip, HiOutlineBanknotes,
 } from 'react-icons/hi2'
 import Page from '../components/Page.jsx'
@@ -75,35 +74,6 @@ export default function Solutions() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* APPROACH BANNER */}
-      <section className="section sol__banner-sec bg-grain">
-        <div className="glow glow-gold" style={{ width: 380, height: 380, top: '10%', left: -140 }} />
-        <div className="container">
-          <Reveal className="card sol__banner">
-            <div>
-              <p className="eyebrow">Southpaw Lens</p>
-              <h2>Your numbers, <span className="gold-text">alive.</span></h2>
-              <p className="muted">
-                Every engagement plugs into Southpaw Lens — our proprietary analytics platform that
-                consolidates your financials into a single, always-current view. Model scenarios,
-                track KPIs, and see the impact of every decision before you make it.
-              </p>
-              <Link to="/contact" className="btn btn-gold">Request a demo <HiArrowUpRight /></Link>
-            </div>
-            <div className="sol__lens">
-              <div className="sol__lens-row"><span>Revenue</span><em className="gold-text">+18.4%</em></div>
-              <div className="sol__lens-bar"><i style={{ width: '82%' }} /></div>
-              <div className="sol__lens-row"><span>Operating margin</span><em className="gold-text">24.1%</em></div>
-              <div className="sol__lens-bar"><i style={{ width: '64%' }} /></div>
-              <div className="sol__lens-row"><span>Free cash flow</span><em className="gold-text">$312M</em></div>
-              <div className="sol__lens-bar"><i style={{ width: '71%' }} /></div>
-              <div className="sol__lens-row"><span>Effective tax rate</span><em className="gold-text">19.2%</em></div>
-              <div className="sol__lens-bar"><i style={{ width: '48%' }} /></div>
-            </div>
-          </Reveal>
         </div>
       </section>
 

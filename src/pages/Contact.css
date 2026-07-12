@@ -18,6 +18,8 @@
 
 /* Form */
 .contact__form { padding: clamp(1.8rem, 3vw, 2.6rem); display: flex; flex-direction: column; gap: 1.2rem; }
+/* no cursor-spotlight glow on the form card */
+.contact__form::after { display: none; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
 .field { display: flex; flex-direction: column; gap: 0.5rem; }
 .field span { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; color: var(--slate-300); }
@@ -45,10 +47,18 @@
   font-size: 0.9rem;
 }
 .contact__success svg { font-size: 1.3rem; flex-shrink: 0; }
+.contact__error {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: rgba(220,80,80,.12); border: 1px solid rgba(220,80,80,.35);
+  color: #f0a9a9; padding: 0.9rem 1.1rem; border-radius: 12px;
+  font-size: 0.9rem;
+}
+.contact__error svg { font-size: 1.3rem; flex-shrink: 0; }
+.contact__submit:disabled { opacity: 0.65; cursor: default; transform: none; }
 
 /* Offices */
 .contact__offices-sec { background: var(--navy-800); }
-.contact__offices { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.contact__offices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; max-width: 760px; margin: 0 auto; }
 .contact__office { padding: 2rem 1.7rem; }
 .contact__office-tz { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; }
 .contact__office h3 { font-size: 1.5rem; margin: 0.5rem 0 0.4rem; }

@@ -10,6 +10,33 @@
 }
 .hero__inner { position: relative; z-index: 2; max-width: 900px; }
 .hero__title { margin: 1.6rem 0 1.4rem; line-height: 1.14; }
+
+/* animated aurora + drifting glows — pronounced */
+.hero .glow { opacity: .8; animation: heroDrift 9s ease-in-out infinite alternate; }
+.hero .glow-blue { animation-duration: 12s; animation-delay: -3s; }
+.hero::after {
+  content: '';
+  position: absolute; inset: -10%; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(680px circle at 20% 30%, rgba(63,123,214,.45), transparent 60%),
+    radial-gradient(620px circle at 80% 22%, rgba(201,162,39,.38), transparent 58%),
+    radial-gradient(560px circle at 55% 80%, rgba(45,110,180,.34), transparent 60%);
+  animation: auroraShift 12s ease-in-out infinite alternate;
+  filter: saturate(1.15);
+}
+@keyframes heroDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(70px, 50px) scale(1.25); }
+  100% { transform: translate(-55px, 35px) scale(1.12); }
+}
+@keyframes auroraShift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(60px, -30px, 0) scale(1.15); }
+  100% { transform: translate3d(-55px, 40px, 0) scale(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .glow, .hero::after { animation: none; }
+}
 .hero__sub { font-size: clamp(1.05rem, 1.6vw, 1.3rem); max-width: 640px; }
 .hero__actions { display: flex; gap: 1rem; margin-top: 2.4rem; flex-wrap: wrap; }
 
