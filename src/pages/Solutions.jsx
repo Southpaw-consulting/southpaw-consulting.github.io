@@ -1,6 +1,6 @@
 import {
   HiOutlineShieldCheck, HiOutlineScale, HiOutlineChartBar,
-  HiOutlineBriefcase, HiOutlineCpuChip, HiOutlineBanknotes,
+  HiOutlineBriefcase, HiOutlineClipboardDocumentCheck, HiOutlineBanknotes,
 } from 'react-icons/hi2'
 import Page from '../components/Page.jsx'
 import PageHero from '../components/PageHero.jsx'
@@ -11,20 +11,20 @@ const solutions = [
   {
     icon: <HiOutlineShieldCheck />,
     title: 'Assurance & Audit',
-    text: 'Independent audits and assurance that give boards, investors, and regulators total confidence in your reporting.',
-    points: ['Statutory & financial statement audits', 'Internal controls & SOX readiness', 'Risk assurance & compliance reviews'],
+    text: 'Independent audit services that enhance financial transparency and build confidence in your financial reporting.',
+    points: ['Statutory & Financial Statement Audits', 'Financial Reporting Assurance', 'Regulatory & Compliance Reviews'],
   },
   {
     icon: <HiOutlineScale />,
     title: 'Tax Advisory',
     text: 'Proactive tax strategy that protects margin, manages exposure, and keeps you compliant across every jurisdiction.',
-    points: ['Corporate & international tax planning', 'Transfer pricing & structuring', 'Tax controversy & compliance'],
+    points: ['Corporate & international tax planning', 'Transfer pricing & structuring', 'Tax planning & compliance'],
   },
   {
     icon: <HiOutlineChartBar />,
     title: 'Management Consulting',
-    text: 'Strategy, operating models, and cost transformation engineered around measurable financial outcomes.',
-    points: ['Growth & corporate strategy', 'Operating model & cost transformation', 'Performance & KPI frameworks'],
+    text: 'Practical business solutions to improve performance, efficiency, and profitability.',
+    points: ['Business planning', 'Cost optimization', 'Performance monitoring'],
   },
   {
     icon: <HiOutlineBriefcase />,
@@ -34,15 +34,15 @@ const solutions = [
   },
   {
     icon: <HiOutlineBanknotes />,
-    title: 'CFO & Finance Advisory',
-    text: 'Fractional CFO leadership and finance transformation for companies scaling through complexity.',
-    points: ['Fractional & interim CFO', 'FP&A and cash-flow modeling', 'Finance function build-out'],
+    title: 'Book Keeping',
+    text: 'Stay on top of your finances with timely bookkeeping services that ensure accurate records and hassle-free compliance.',
+    points: ['Daily transaction recording', 'Bank reconciliation', 'Accounts receivable & payable', 'Monthly reporting'],
   },
   {
-    icon: <HiOutlineCpuChip />,
-    title: 'Data & Analytics',
-    text: 'Our Southpaw Lens platform turns your financial data into forward-looking, decision-ready intelligence.',
-    points: ['Financial dashboards & KPIs', 'Scenario & sensitivity modeling', 'Predictive forecasting'],
+    icon: <HiOutlineClipboardDocumentCheck />,
+    title: 'Internal Audit',
+    text: 'Providing independent assurance to improve business processes, strengthen internal controls, and manage operational risks.',
+    points: ['Internal control testing', 'Process & compliance audits', 'Risk identification & mitigation'],
   },
 ]
 

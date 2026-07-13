@@ -38,6 +38,22 @@
   box-shadow: 0 0 0 3px rgba(201,162,39,.14);
 }
 .field select { appearance: none; cursor: pointer; }
+/* validation states */
+.field input.is-invalid, .field textarea.is-invalid {
+  border-color: rgba(220,80,80,.6);
+  background: rgba(220,80,80,.06);
+}
+.field input.is-invalid:focus, .field textarea.is-invalid:focus {
+  box-shadow: 0 0 0 3px rgba(220,80,80,.16);
+}
+.field-err { font-size: 0.78rem; color: #f0a9a9; margin-top: 0.1rem; }
+/* honeypot: hidden from humans, present in the DOM for bots */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px; height: 1px;
+  opacity: 0; pointer-events: none;
+}
 .field option { background: var(--navy-800); color: var(--ivory); }
 .contact__submit { margin-top: 0.5rem; align-self: flex-start; }
 .contact__success {

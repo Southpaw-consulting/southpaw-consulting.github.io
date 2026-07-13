@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   HiArrowUpRight, HiOutlineEnvelope, HiOutlinePhone, HiOutlineMapPin,
@@ -14,30 +14,87 @@ const services = ['Assurance & Audit', 'Tax Advisory', 'Management Consulting', 
 // Submissions are emailed here via FormSubmit (free, unlimited, no account).
 const FORM_ENDPOINT = 'https://formsubmit.co/ajax/southpawfinancials@gmail.com'
 
-const EMPTY = { name: '', email: '', company: '', service: services[0], message: '' }
+const EMPTY = { name: '', email: '', phone: '', company: '', service: services[0], message: '' }
+
+// Field-level validation — returns a map of { field: errorMessage }
+function validate(f) {
+  const e = {}
+  const name = f.name.trim()
+  const email = f.email.trim()
+  const phone = f.phone.trim()
+  const company = f.company.trim()
+  const message = f.message.trim()
+
+  if (!name) e.name = 'Please enter your full name.'
+  else if (name.length < 2) e.name = 'That name looks too short.'
+  else if (name.length > 80) e.name = 'That name looks too long.'
+
+  if (!email) e.email = 'Please enter your email.'
+  else if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email) || /\.\./.test(email))
+    e.email = 'Enter a valid email address.'
+
+  if (phone && phone.length !== 10) e.phone = 'Enter a 10-digit phone number.'
+
+  if (company && company.length > 100) e.company = 'Company name is too long.'
+
+  if (!message) e.message = 'Please tell us a little about your needs.'
+  else if (message.length < 10) e.message = 'Please add a bit more detail (10+ characters).'
+  else if (message.length > 2000) e.message = 'Message is too long (2000 characters max).'
+
+  return e
+}
 
 export default function Contact() {
   const [form, setForm] = useState(EMPTY)
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
   const [errMsg, setErrMsg] = useState('')
+  const [errors, setErrors] = useState({})
+  const hpRef = useRef(null) // honeypot anti-spam trap
 
-  const update = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
+  const update = (e) => {
+    const { name, value } = e.target
+    // Phone: digits only, capped at 10 — strips letters, emojis, symbols, spaces as typed.
+    const clean = name === 'phone' ? value.replace(/\D/g, '').slice(0, 10) : value
+    setForm((f) => ({ ...f, [name]: clean }))
+    // clear a field's error as the user corrects it
+    setErrors((prev) => (prev[name] ? { ...prev, [name]: undefined } : prev))
+  }
 
   const submit = async (e) => {
     e.preventDefault()
+
+    // Bot filled the hidden honeypot → silently drop (pretend success).
+    if (hpRef.current && hpRef.current.value) {
+      setStatus('sent')
+      setForm(EMPTY)
+      setTimeout(() => setStatus('idle'), 6000)
+      return
+    }
+
+    // Validate before sending.
+    const found = validate(form)
+    if (Object.keys(found).length) {
+      setErrors(found)
+      setStatus('idle')
+      return
+    }
+    setErrors({})
+
     setStatus('sending')
     setErrMsg('')
     try {
       // FormData avoids a CORS preflight (more reliable than JSON with FormSubmit)
       const fd = new FormData()
-      fd.append('name', form.name)
-      fd.append('email', form.email)
-      fd.append('company', form.company)
+      fd.append('name', form.name.trim())
+      fd.append('email', form.email.trim())
+      fd.append('phone', form.phone.trim())
+      fd.append('company', form.company.trim())
       fd.append('service', form.service)
-      fd.append('message', form.message)
-      fd.append('_subject', `New enquiry from ${form.name || 'website'} — Southpaw`)
+      fd.append('message', form.message.trim())
+      fd.append('_subject', `New enquiry from ${form.name.trim() || 'website'} — Southpaw`)
       fd.append('_template', 'table')
       fd.append('_captcha', 'false')
+      fd.append('_honey', hpRef.current ? hpRef.current.value : '')
 
       const res = await fetch(FORM_ENDPOINT, {
         method: 'POST',
@@ -89,7 +146,7 @@ export default function Contact() {
               </div>
               <div className="contact__item">
                 <span className="contact__ic"><HiOutlinePhone /></span>
-                <div><strong>Phone</strong><p className="muted">-</p></div>
+                <div><strong>Phone</strong><p className="muted">8825954843</p></div>
               </div>
               <div className="contact__item">
                 <span className="contact__ic"><HiOutlineMapPin /></span>
@@ -104,22 +161,47 @@ export default function Contact() {
 
           {/* FORM */}
           <Reveal delay={0.12} className="contact__form-wrap">
-            <form className="card contact__form" onSubmit={submit}>
+            <form className="card contact__form" onSubmit={submit} noValidate>
+              {/* honeypot — hidden from humans, bots tend to fill it */}
+              <input
+                ref={hpRef}
+                type="text"
+                name="_honey"
+                tabIndex="-1"
+                autoComplete="off"
+                aria-hidden="true"
+                className="hp-field"
+              />
+
               <div className="field-row">
                 <label className="field">
                   <span>Full name</span>
-                  <input name="name" value={form.name} onChange={update} required placeholder="Jane Doe" />
+                  <input name="name" value={form.name} onChange={update} maxLength={80}
+                    aria-invalid={!!errors.name} className={errors.name ? 'is-invalid' : ''} placeholder="Jane Doe" />
+                  {errors.name && <span className="field-err">{errors.name}</span>}
                 </label>
                 <label className="field">
                   <span>Work email</span>
-                  <input name="email" type="email" value={form.email} onChange={update} required placeholder="jane@company.com" />
+                  <input name="email" type="email" value={form.email} onChange={update} maxLength={120}
+                    aria-invalid={!!errors.email} className={errors.email ? 'is-invalid' : ''} placeholder="jane@company.com" />
+                  {errors.email && <span className="field-err">{errors.email}</span>}
                 </label>
               </div>
 
-              <label className="field">
-                <span>Company</span>
-                <input name="company" value={form.company} onChange={update} placeholder="Company name" />
-              </label>
+              <div className="field-row">
+                <label className="field">
+                  <span>Phone</span>
+                  <input name="phone" type="tel" inputMode="numeric" value={form.phone} onChange={update} maxLength={10}
+                    aria-invalid={!!errors.phone} className={errors.phone ? 'is-invalid' : ''} placeholder="9876543210" />
+                  {errors.phone && <span className="field-err">{errors.phone}</span>}
+                </label>
+                <label className="field">
+                  <span>Company</span>
+                  <input name="company" value={form.company} onChange={update} maxLength={100}
+                    aria-invalid={!!errors.company} className={errors.company ? 'is-invalid' : ''} placeholder="Company name" />
+                  {errors.company && <span className="field-err">{errors.company}</span>}
+                </label>
+              </div>
 
               <label className="field">
                 <span>How can we help?</span>
@@ -130,7 +212,10 @@ export default function Contact() {
 
               <label className="field">
                 <span>Tell us more</span>
-                <textarea name="message" rows="4" value={form.message} onChange={update} required placeholder="A few lines about your goals or challenge…" />
+                <textarea name="message" rows="4" value={form.message} onChange={update} maxLength={2000}
+                  aria-invalid={!!errors.message} className={errors.message ? 'is-invalid' : ''}
+                  placeholder="A few lines about your goals or challenge…" />
+                {errors.message && <span className="field-err">{errors.message}</span>}
               </label>
 
               <button type="submit" className="btn btn-gold contact__submit" disabled={status === 'sending'}>
