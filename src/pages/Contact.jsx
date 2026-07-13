@@ -9,7 +9,7 @@ import PageHero from '../components/PageHero.jsx'
 import Reveal from '../components/Reveal.jsx'
 import './Contact.css'
 
-const services = ['Assurance & Audit', 'Tax Advisory', 'Management Consulting', 'Deal Advisory', 'CFO & Finance Advisory', 'Data & Analytics', 'Not sure yet']
+const services = ['Assurance & Audit', 'Tax Advisory', 'Management Consulting', 'Deal Advisory', 'Book Keeping', 'Internal Audit', 'Not sure yet']
 
 // Submissions are emailed here via FormSubmit (free, unlimited, no account).
 const FORM_ENDPOINT = 'https://formsubmit.co/ajax/southpawfinancials@gmail.com'
