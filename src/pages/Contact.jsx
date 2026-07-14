@@ -11,8 +11,11 @@ import './Contact.css'
 
 const services = ['Assurance & Audit', 'Tax Advisory', 'Management Consulting', 'Deal Advisory', 'Book Keeping', 'Internal Audit', 'Not sure yet']
 
-// Submissions are emailed here via FormSubmit (free, unlimited, no account).
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/southpawfinancials@gmail.com'
+// Netlify Forms — Netlify captures the submission and emails it to you.
+const encode = (data) =>
+  Object.keys(data)
+    .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
+    .join('&')
 
 const EMPTY = { name: '', email: '', phone: '', company: '', service: services[0], message: '' }
 
@@ -83,35 +86,27 @@ export default function Contact() {
     setStatus('sending')
     setErrMsg('')
     try {
-      // FormData avoids a CORS preflight (more reliable than JSON with FormSubmit)
-      const fd = new FormData()
-      fd.append('name', form.name.trim())
-      fd.append('email', form.email.trim())
-      fd.append('phone', form.phone.trim())
-      fd.append('company', form.company.trim())
-      fd.append('service', form.service)
-      fd.append('message', form.message.trim())
-      fd.append('_subject', `New enquiry from ${form.name.trim() || 'website'} — Southpaw`)
-      fd.append('_template', 'table')
-      fd.append('_captcha', 'false')
-      fd.append('_honey', hpRef.current ? hpRef.current.value : '')
-
-      const res = await fetch(FORM_ENDPOINT, {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: fd,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'contact',
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          company: form.company.trim(),
+          service: form.service,
+          message: form.message.trim(),
+          'bot-field': hpRef.current ? hpRef.current.value : '',
+        }),
       })
 
-      let data = {}
-      try { data = await res.json() } catch { /* non-JSON response */ }
-      const ok = res.ok && data.success !== false && data.success !== 'false'
-
-      if (ok) {
+      if (res.ok) {
         setStatus('sent')
         setForm(EMPTY)
         setTimeout(() => setStatus('idle'), 6000)
       } else {
-        setErrMsg(data.message || `Request failed (HTTP ${res.status})`)
+        setErrMsg(`Request failed (HTTP ${res.status})`)
         setStatus('error')
       }
     } catch (err) {
@@ -166,7 +161,7 @@ export default function Contact() {
               <input
                 ref={hpRef}
                 type="text"
-                name="_honey"
+                name="bot-field"
                 tabIndex="-1"
                 autoComplete="off"
                 aria-hidden="true"
